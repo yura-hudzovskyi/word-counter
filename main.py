@@ -1,6 +1,7 @@
-def timer(func):
-    import timeit
+import timeit
 
+
+def timer(func):
     def wrapper(*args, **kwargs):
         start_time = timeit.default_timer()
         result = func(*args, **kwargs)
@@ -22,8 +23,7 @@ def word_frequency_v1(paragraph: list[str]) -> dict[str, int]:
         words += sentence.lower().split()
 
     for word in words:
-        word = word.strip(".,!?")
-
+        word = word.strip(".,;:!?\"'()[]{}")  # also regex can be used, but it's slower
         if word:
             word_freq[word] = word_freq.get(word, 0) + 1
 
